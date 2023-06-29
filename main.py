@@ -63,7 +63,7 @@ def movies(cat):
     perv = None if page == 1 else page - 1
     next = None if len(data) != 20 else page + 1
     channel = "1001672758629" if cat == "movies" else "1001885286768" if cat == "series" else "1001943439473"
-    return render_template('view.html', data=data, perv=perv, next=next,channel=channel)
+    return render_template('index.html', data=data, perv=perv, next=next,channel=channel)
 
 
 @app.route('/admin/<cat>/')
