@@ -55,7 +55,7 @@ def deleteDb(channel,Id):
 def addDb(document):
     url = "https://ap-south-1.aws.data.mongodb-api.com/app/data-jktzb/endpoint/data/v1/action/insertOne"
     payload = json.dumps({
-        "collection": "tmdb",
+        "collection": "TMDB",
         "database": "api",
         "dataSource": "Cluster0",
         "document":document
