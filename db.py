@@ -70,7 +70,7 @@ def addDb(document):
 def indexDb(filter={},skip=None,limit=None):
     url = "https://ap-south-1.aws.data.mongodb-api.com/app/data-jktzb/endpoint/data/v1/action/find"
     payload = json.dumps({
-        "collection": "tmdb",
+        "collection": "TMDB",
         "database": "api",
         "dataSource": "Cluster0",
         "filter": filter,
@@ -88,7 +88,7 @@ def indexDb(filter={},skip=None,limit=None):
 def postDb(Id):
     url = "https://ap-south-1.aws.data.mongodb-api.com/app/data-jktzb/endpoint/data/v1/action/findOne"
     payload = {
-        "collection": "tmdb",
+        "collection": "TMDB",
         "database": "api",
         "dataSource": "Cluster0",
         "filter": {"Id":Id},
