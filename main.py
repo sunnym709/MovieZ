@@ -53,17 +53,15 @@ def post(cat,id):
 @app.route('/<cat>/')
 def movies(cat):
     page = int(request.args.get('page', 1))
-    per_page = int(request.args.get('perPage', 20))
+    per_page = int(request.args.get('perPage', 18))
     search_term = request.args.get('search', '')
     pattern = '.*' + '.*'.join(search_term.strip().split(" ")) + '.*'
     query = {"$and": [{"title": {"$regex": pattern, "$options": "i"}}]} if search_term != '' else {}
     skip = (page - 1) * per_page
-    sort = -1 if cat == "movies" else 1
-    data = searchDb(cat,sort={"Id":sort}, filter=query, skip=skip, limit=per_page)
+    data = indexDb(filter=query, skip=skip, limit=per_page)
     perv = None if page == 1 else page - 1
-    next = None if len(data) != 20 else page + 1
-    channel = "1001672758629" if cat == "movies" else "1001885286768" if cat == "series" else "1001943439473"
-    return render_template('index.html', data=data, perv=perv, next=next,channel=channel)
+    next = None if len(data) != 18 else page + 1
+    return render_template('index.html', data=data, perv=perv, next=next)
 
 
 @app.route('/admin/<cat>/')
