@@ -5,15 +5,15 @@
 <div class = "container mt-2">
   <div class="row">
   <div id="poster" class="col-lg-3 col-md-4 col-sm-12 mb-4">
-    <img src="{{post.poster}}" class="img-fluid rounded">
+    <img src="https://image.tmdb.org/t/p/w500{{post.poster}}" class="img-fluid rounded">
   </div>
   <div class="col-lg-9 col-md-8 col-sm-12">
     <h3 >{{post.title}}</h3>
+    <p><strong>Release Date: </strong>{{post.date}}</p>
+    <p><strong>Rating: </strong>{{post.rating}}</p>
+    <p><strong>Genres: </strong>{{post.genres}}</p>
     <p><strong>Overview: </strong>{{post.overview}}</p>
-  
-
-
-    <div class="accordion  mb-5" id="accordionExample">
+    <div class="accordion" id="accordionExample">
       <h5>Watch / Download</h5>
     {% for row in data %}
       <div class="accordion-item" data-item="{{ row.Id }}">
@@ -34,6 +34,20 @@
   </div>
 </div>
 </div>
+</div>
+
+<div class="container mt-3">
+  <h5>Cast: </h5>
+  <div class="row row-cols-2 row-cols-sm-4 row-cols-md-6">
+    {% for row in post.cast.split(",") %}
+    <div class="col">
+      <figure class="figure">
+        <img src="https://image.tmdb.org/t/p/w500/{{ row.split('/')[-1] }}" class="figure-img img-fluid rounded">
+        <figcaption class="figure-caption" style="text-align:center">{{ row.split("/")[0] }}</figcaption>
+      </figure>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 
 {% endblock %}
