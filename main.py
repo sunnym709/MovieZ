@@ -44,33 +44,34 @@ def movies(cat):
     return render_template('index.html', data=data, perv=perv, next=next)
 
 
-@app.route("/post/add/<cat>/<id>",methods=['GET'])
-def addToTMDB(cat,id):
+@app.route("/posts/add/<cat>/<id>",methods=['GET'])
+def pAdd(cat,id):
     item = tmdb(id,cat)
     insertToTMDB(item)
     return "Success"
 
 
-@app.route("/post/update/<id>/<title>",methods=['GET'])
-def addToTMDB(id,title):
+@app.route("/posts/update/<id>/<title>",methods=['GET'])
+def pUpdate(id,title):
     updatePosts(id,title)
     return "Success"
 
 
 @app.route("/update/<cat>/<id>/<title>",methods=['GET'])
-def addToTMDB(cat,id,title):
+def update(cat,id,title):
     updateItems(cat,id,title)
     return "Success"
 
 
 @app.route("/add/<cat>/<id>/<title>",methods=['GET'])
-def addToTMDB(cat,id,title):
+def add(cat,id,title):
+    print(cat,id,title)
     addItems(cat,id,title)
     return "Success"
 
 
 @app.route("/delete/<cat>/<id>",methods=['GET'])
-def addToTMDB(cat,id):
+def delete(cat,id):
     deleteItems(cat,id)
     return "Success"
 
