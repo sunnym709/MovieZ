@@ -68,7 +68,7 @@ def getItems(table,search_term):
     conn = sqlite3.connect('api.db')
     cur = conn.cursor()
     query = f"SELECT id, title FROM {table.upper()}"
-    channel = 1 if table == "movies" else 2 if table == "series" else 3 if table == "dramas" else 4
+    channel = 1001672758629 if table == "movies" else 1001885286768 if table == "series" else 1001943439473 if table == "dramas" else 1001805372983
     params = []
     if search_term:
         search_terms = search_term.split()
