@@ -1,4 +1,3 @@
-from tmdb import tmdb
 from datetime import datetime
 from pytz import timezone
 import sqlite3
@@ -86,7 +85,7 @@ def getItems(table,search_term):
 def addItems(table,id,title):
     conn = sqlite3.connect('api.db')
     cur = conn.cursor()
-    cur.execute(f"INSERT INTO {table.upper()} (?, ?)",[id, title])
+    cur.execute(f"INSERT INTO {table.upper()} VALUES (?, ?)",[str(id), str(title)])
     conn.commit()
     conn.close()
 
@@ -94,7 +93,7 @@ def addItems(table,id,title):
 def updateItems(table,id,title):
     conn = sqlite3.connect('api.db')
     cur = conn.cursor()
-    cur.execute(f"UPDATE {table.upper()} title='{title}' WHERE id='{id}'")
+    cur.execute(f"UPDATE {table.upper()} SET title='{title}' WHERE id='{id}'")
     conn.commit()
     conn.close()
 
@@ -102,13 +101,15 @@ def updateItems(table,id,title):
 def deleteItems(table,id):
     conn = sqlite3.connect('api.db')
     cur = conn.cursor()
-    cur.execute(f"DELETE INTO {table.upper()} WHERE id='{id}'")
+    cur.execute(f"DELETE FROM {table.upper()} WHERE id='{id}'")
     conn.commit()
     conn.close()
+
 
 def updatePosts(id,title):
     conn = sqlite3.connect('api.db')
     cur = conn.cursor()
-    cur.execute(f"UPDATE TMDB title='{title}' WHERE id='{id}'")
+    print(f"UPDATE TMDB title='{title}' WHERE id='{id}'")
+    cur.execute(f"UPDATE TMDB SET title='{title}' WHERE id='{id}'")
     conn.commit()
     conn.close()
